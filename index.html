@@ -3,48 +3,59 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Herramienta abierta para estructurar presupuestos por precio unitario.">
+<meta name="description" content="Estructurador abierto de presupuestos por precio unitario.">
 <title>Presupuestos APU</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <main class="wrap">
-<header><div><h1>Presupuestos APU</h1><p>Estructurador abierto de presupuestos por precio unitario</p></div><span class="badge">Prototipo</span></header>
-
-<section class="steps">
-<div class="step active"><b>1</b><span>Proyecto</span></div><div class="step"><b>2</b><span>Partidas</span></div>
-<div class="step"><b>3</b><span>Conceptos</span></div><div class="step"><b>4</b><span>Precios</span></div><div class="step"><b>5</b><span>Productos</span></div>
-</section>
+<header class="top"><div><h1>Presupuestos APU</h1><p>Presupuestos por precio unitario a partir de una base documental interna</p></div><span class="badge">Base real v8</span></header>
+<nav class="steps" aria-label="Proceso"><span class="active">1 Proyecto</span><span>2 Partidas</span><span>3 Conceptos</span><span>4 Matrices</span><span>5 Precios</span><span>6 Productos</span></nav>
 
 <section class="panel">
 <h2>1. Tipo de proyecto</h2>
-<p class="muted">Selecciona una categoría de la base interna.</p>
-<label>Categoría<select id="category"></select></label>
-</section>
-
-<section class="metrics">
-<div><small>Partidas principales</small><strong id="mChapters">0</strong></div>
-<div><small>Conceptos en base</small><strong id="mConcepts">0</strong></div>
-<div><small>Seleccionadas</small><strong id="mSelected">0</strong></div>
+<label>Categoría<select id="category"><option>Cargando…</option></select></label>
+<div id="meta" class="metrics"></div>
 </section>
 
 <section class="panel">
-<div class="row">
-<div><h2>2. Estructura base del presupuesto</h2><p id="note" class="muted"></p></div>
-<div class="actions"><button id="all" class="secondary">Todas</button><button id="none" class="secondary">Ninguna</button></div>
+<div class="row"><div><h2>2. Partidas</h2><p class="muted">Activa o desactiva las partidas que formarán el presupuesto.</p></div><div class="actions"><button id="chapAll" class="secondary">Todas</button><button id="chapNone" class="secondary">Ninguna</button></div></div>
+<div id="chapters" class="chapter-grid"></div>
+</section>
+
+<section class="panel">
+<div class="row"><div><h2>3. Conceptos</h2><p class="muted">Los conceptos con matriz se integran por defecto. Puedes excluir cualquiera.</p></div><div class="actions"><button id="conceptAll" class="secondary">Todos</button><button id="conceptNone" class="secondary">Ninguno</button></div></div>
+<div class="filters"><input id="search" type="search" placeholder="Buscar por código o descripción"><select id="subchapter"><option value="">Todas las subpartidas</option></select><label class="inline"><input id="onlyMatrix" type="checkbox"> Solo con matriz</label></div>
+<div id="conceptStats" class="callout"></div>
+<div id="concepts" class="concept-list"></div>
+<div class="pager"><button id="prev" class="secondary">Anterior</button><span id="pageInfo"></span><button id="next" class="secondary">Siguiente</button></div>
+</section>
+
+<section class="panel">
+<h2>4. Matriz seleccionada</h2><p class="muted">Pulsa “Ver matriz” en un concepto. Cuando captures precios actuales, este desglose mostrará también el resultado recalculado.</p>
+<div id="matrixDetail" class="empty">Ninguna matriz abierta.</div>
+</section>
+
+<section class="panel">
+<div class="row"><div><h2>5. Actualización de materiales</h2><p class="muted">La prioridad combina presencia e incidencia económica. Los precios originales permanecen como referencia histórica de la base.</p></div><button id="analyze">Analizar materiales</button></div>
+<div id="materials" class="empty">Ejecuta el análisis para obtener los materiales prioritarios.</div>
+</section>
+
+<section class="panel">
+<div class="row"><div><h2>6. Presupuesto recalculado y productos</h2><p class="muted">Aplica la cantidad de obra de cada concepto al precio unitario recalculado y obtiene importes por concepto, partida y presupuesto seleccionado.</p></div><button id="calculate">Recalcular presupuesto</button></div>
+<div id="results" class="empty">Captura los precios que quieras actualizar y ejecuta el recálculo.</div>
+<div id="downloads" class="downloads hidden">
+<button data-export="materials" class="secondary"><b>materiales.xls</b><span>Materiales y precios</span></button>
+<button data-export="labor" class="secondary"><b>mano_obra.xls</b><span>Mano de obra utilizada</span></button>
+<button data-export="equipment" class="secondary"><b>equipos.xls</b><span>Equipos utilizados</span></button>
+<button data-export="tools" class="secondary"><b>herramientas.xls</b><span>Herramientas y auxiliares</span></button>
+<button data-export="matrices" class="secondary"><b>matrices.xls</b><span>Matrices recalculadas</span></button>
+<button data-export="budget" class="secondary"><b>presupuesto.xls</b><span>Conceptos y resumen por partidas</span></button>
 </div>
-<div id="chapters" class="grid"></div>
+<div id="exportStatus" class="muted" aria-live="polite"></div>
 </section>
 
-<section class="panel">
-<h2>3. Presupuesto a construir</h2>
-<p class="muted">La selección servirá para recuperar conceptos y matrices en la siguiente versión.</p>
-<div id="summary" class="callout"></div>
-<button id="continue">Continuar a conceptos y matrices</button>
-<p id="status" class="muted"></p>
-</section>
-
-<footer>Base documental interna · Los archivos Excel fuente no se exponen al usuario.</footer>
+<footer>Los Excel originales permanecen fuera del sitio público. En los catálogos extensos, las matrices se cargan por partida para reducir transferencia y memoria en dispositivos móviles.</footer>
 </main>
 <script src="app.js"></script>
 </body>

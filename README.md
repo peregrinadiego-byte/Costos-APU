@@ -1,25 +1,57 @@
-# Presupuestos APU
+# Presupuestos APU — v8
 
-Prototipo web estático para estructurar presupuestos por precio unitario.
+Aplicación web estática para estructurar y recalcular presupuestos por precio unitario.
 
-## Despliegue en GitHub Pages
+## Cambio principal de v8
 
-1. Crea un repositorio nuevo en GitHub.
-2. Sube **el contenido de esta carpeta** a la raíz del repositorio.
-3. En GitHub abre **Settings → Pages**.
-4. En **Build and deployment**, selecciona **Deploy from a branch**.
-5. Selecciona la rama `main` y la carpeta `/ (root)`.
-6. Guarda. GitHub publicará el sitio.
+Los catálogos extensos ya no descargan un único `matrices.json` de 12–16 MB.
 
-## Estructura
+Las matrices de:
 
-- `index.html`: interfaz.
-- `styles.css`: estilos responsive.
-- `app.js`: lógica del prototipo.
-- `data/catalogo.json`: catálogo interno procesado.
+- Constructor
+- Concursos
+- Desarrollador
+- Remodelador
 
-Los Excel fuente no forman parte del sitio público.
+se fragmentaron por partida y se cargan bajo demanda.
 
-## Estado
+Ejemplo:
 
-Esta entrega implementa categorías y partidas. El siguiente módulo incorporará conceptos, matrices, insumos, recurrencia de materiales y exportaciones.
+```text
+data/
+└── constructor/
+    ├── meta.json
+    ├── structure.json
+    ├── matrix-manifest.json
+    └── matrices/
+        ├── 103.json
+        ├── 104.json
+        ├── 105.json
+        └── ...
+```
+
+La aplicación descarga únicamente las partidas necesarias para los conceptos seleccionados.
+
+## Ventajas
+
+- Menor transferencia de datos en celular.
+- Menor uso de memoria del navegador.
+- Evita archivos grandes en la carga web del repositorio.
+- Mantiene la aplicación compatible con GitHub Pages.
+- No modifica la lógica de cálculo de la v7.
+
+## Actualización en GitHub
+
+Reemplaza:
+
+- `index.html`
+- `styles.css`
+- `app.js`
+- `README.md`
+- `data/` completa
+
+Elimina previamente la carpeta `data/` de la versión anterior para evitar que permanezcan archivos `matrices.json` obsoletos en los cuatro catálogos extensos.
+
+## Nota
+
+Los Excel originales no se publican. La base web contiene datos procesados en JSON.
