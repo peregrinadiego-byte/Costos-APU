@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Herramienta abierta para estructurar presupuestos por precio unitario.">
+<title>Presupuestos APU</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="wrap">
+<header><div><h1>Presupuestos APU</h1><p>Estructurador abierto de presupuestos por precio unitario</p></div><span class="badge">Prototipo</span></header>
+
+<section class="steps">
+<div class="step active"><b>1</b><span>Proyecto</span></div><div class="step"><b>2</b><span>Partidas</span></div>
+<div class="step"><b>3</b><span>Conceptos</span></div><div class="step"><b>4</b><span>Precios</span></div><div class="step"><b>5</b><span>Productos</span></div>
+</section>
+
+<section class="panel">
+<h2>1. Tipo de proyecto</h2>
+<p class="muted">Selecciona una categoría de la base interna.</p>
+<label>Categoría<select id="category"></select></label>
+</section>
+
+<section class="metrics">
+<div><small>Partidas principales</small><strong id="mChapters">0</strong></div>
+<div><small>Conceptos en base</small><strong id="mConcepts">0</strong></div>
+<div><small>Seleccionadas</small><strong id="mSelected">0</strong></div>
+</section>
+
+<section class="panel">
+<div class="row">
+<div><h2>2. Estructura base del presupuesto</h2><p id="note" class="muted"></p></div>
+<div class="actions"><button id="all" class="secondary">Todas</button><button id="none" class="secondary">Ninguna</button></div>
+</div>
+<div id="chapters" class="grid"></div>
+</section>
+
+<section class="panel">
+<h2>3. Presupuesto a construir</h2>
+<p class="muted">La selección servirá para recuperar conceptos y matrices en la siguiente versión.</p>
+<div id="summary" class="callout"></div>
+<button id="continue">Continuar a conceptos y matrices</button>
+<p id="status" class="muted"></p>
+</section>
+
+<footer>Base documental interna · Los archivos Excel fuente no se exponen al usuario.</footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

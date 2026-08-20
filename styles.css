@@ -1,0 +1,14 @@
+:root{--bg:#f5f6f8;--card:#fff;--text:#17191c;--muted:#626973;--line:#dfe3e8;--accent:#1769aa;--soft:#eaf3fb}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:980px;margin:auto;padding:24px}header{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:22px}
+h1{font-size:1.6rem;margin:0}h2{font-size:1.05rem;margin:0 0 6px}p{margin:4px 0}.muted{color:var(--muted);font-size:.92rem}
+.badge{background:var(--soft);padding:6px 10px;border-radius:999px;font-size:.82rem}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:16px}.step{border:1px solid var(--line);border-radius:12px;padding:10px;background:var(--card);display:flex;gap:8px}.step.active{border-color:var(--accent);background:var(--soft)}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:14px 0}
+label{display:block;margin-top:14px}select{display:block;width:100%;margin-top:6px;padding:11px;border:1px solid var(--line);border-radius:10px;background:#fff;font:inherit}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.metrics>div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}.metrics small{display:block;color:var(--muted)}.metrics strong{font-size:1.5rem}
+.row{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}.actions{display:flex;gap:8px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:14px}
+.item{display:flex;gap:10px;border:1px solid var(--line);border-radius:12px;padding:12px}.item.on{border-color:var(--accent);background:var(--soft)}.item input{margin-top:4px}.code{color:var(--muted);font-size:.82rem}
+button{border:0;border-radius:10px;padding:11px 15px;background:var(--accent);color:white;font:inherit;cursor:pointer}.secondary{background:white;color:var(--text);border:1px solid var(--line)}
+.callout{background:var(--soft);border-radius:12px;padding:14px;margin:12px 0}footer{color:var(--muted);font-size:.82rem;text-align:center;padding:20px}
+@media(max-width:650px){.wrap{padding:14px}.steps{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.row{display:block}.actions{margin-top:12px}.metrics{grid-template-columns:1fr 1fr}.metrics>div:last-child{grid-column:1/-1}}
